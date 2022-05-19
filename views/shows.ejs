@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script type="text/javascript" src="pag.js"></script>  
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+          padding:2px;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: black;
+      }
+
+      .topnav a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a.active {
+        background-color: black;
+        color: white;
+      }
+
+      .topnav .search-container {
+        float: right;
+      }
+
+      .topnav input[type='text'] {
+        padding: 6px;
+        margin-top: 7px;
+        font-size: 17px;
+        border: none;
+      }
+      figure {
+        color: white;
+        font-weight: bold;
+        border: solid black 1px;
+      
+        width: 220px;
+       
+        margin-left: 40px;
+        background-color: #353839;
+        margin-top: 50px;
+       
+        text-align: center;
+        display: inline-block;
+      }
+      figure img {
+        
+       
+      }
+      
+
+      .topnav .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 7px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        height: 36px;
+        cursor: pointer;
+      }
+      .tekst{
+          margin-right:-10px;
+          color:white;
+        }
+        #next,#prev{
+       
+        font-family:	Arial;
+        color:black;
+        height:30px;
+       
+        
+      }
+      #pageNumber {
+        width:50px;
+        height:30px;
+        text-align:center;
+        background-color:light grey;
+      }
+      body {
+        background: #100c08;
+        background-repeat: repeat-y;
+         font-family:	Trebuchet MS;
+      }
+      a{
+          color:white;
+          font-family:	Trebuchet MS;
+          text-decoration:none;
+
+      }
+
+      .topnav .search-container button:hover {
+        background: #ccc;
+      }
+      .checked {
+  color: orange;
+}
+
+      @media screen and (max-width: 600px) {
+        .topnav .search-container {
+          float: none;
+        }
+        .topnav a,
+        .topnav input[type='text'],
+        .topnav .search-container button {
+          float: none;
+          display: block;
+          text-align: left;
+          width: 100%;
+          margin: 0;
+          padding: 14px;
+        }
+        .topnav input[type='text'] {
+          border: 1px solid #ccc;
+        }
+      }
+    </style>
+  </head>
+    
+  <body>
+    <div class="topnav">
+    
+      <a href="/movies">Popular Movies</a>
+      <a href="/shows">Popular TV Shows</a>
+      <div class="search-container">
+        <form action="/display" method="GET" >
+        <div class="searchform">
+          <input type="text" placeholder="Search.." name="searchBy" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+          <div class="pagination">
+    
+    <input type="text" value="1" id = "pageNumber" name="pageNumber">
+   <h4 class="tekst">Pick the page number </h4>
+  </div>
+        </form>
+
+      </div>
+    </div>
+   
+    <div>
+     
+      <% for(var i = 0;i<showsData.results.length;i++) { %>
+        <figure>
+        <a href="/showdetails/<%=showsData.results[i].id%>">
+          <img
+            src="https://image.tmdb.org/t/p/w500/<%=showsData.results[i].poster_path %>"
+            alt="Trulli"
+            style="width: 220px"
+          />
+          </a>
+           <a href="/showdetails"><figcaption> <%= showsData.results[i].original_name %></figcaption></a>
+          
+          <h6> Aired: <%= showsData.results[i].first_air_date.split("-").join(".") %></h6>
+          <h5>Rated: <span class="fa fa-star checked "></span> <%= showsData.results[i].vote_average %></h5>
+        </figure>
+        
+   <% } %>
+     <div>
+     
+      <% for(var i = 0;i<showsData.results.length;i++) { %>
+        <figure>
+        <a href="/showdetails/<%=showsData.results[i].id%>">
+          <img
+            src="https://image.tmdb.org/t/p/w500/<%=showsData.results[i].poster_path %>"
+            alt="Trulli"
+            style="width: 220px"
+          />
+          </a>
+           <a href="/showdetails"><figcaption><%= showsData.results[i].original_name %></figcaption></a>
+          
+          <h6> Aired: <%= showsData.results[i].first_air_date.split("-").join(".") %></h6>
+          <h5><span class="fa fa-star checked "></span> <%= showsData.results[i].vote_average %></h5>
+        </figure>
+        
+   <% } %>
+    </div>
+  </body>
+  
+</html>
